@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Arcade</title>
+  <link rel="stylesheet" href="./style.css">
+<link rel="icon" type="image/x-icon" href="images/icon.ico">
+
+
+  
+</head>
+<body onload = "genQuote();" >
+
+  <div class="space">
+
+  space
+</div>
+  
+<div class= "text"id="text">
+
+ 
+</div>
+  
+  <div class = title1><img src="https://images.cooltext.com/5600691.png" width="496" height="184" alt=" Ashia's
+Arcade" /> </div>
+  
+
+<img onclick="location.href='tetris_ashia/index.html';" class="static" src="images/tetpre.png">
+  
+<img class="active" src="images/tetpre.gif">
+
+<img onclick="location.href='heffy_2048/index.html';" class="static1" src="images/heffypre.png">
+  
+<img class="active1" src="images/heffypre.gif">
+
+<img onclick="location.href='Skyscraper/index.html';" class="static2" src="images/scrapepre.png">
+  
+<img class="active2" src="images/scrapepre.gif">
+
+<img onclick="location.href='http://thelovetree.epizy.com/?i=1';" class="static3" src="images/treepre.png">
+  
+<img class="active3" src="images/treepre.gif">
+
+
+<img onclick="location.href='cat/index.html';" class="static4" src="images/catpre.png">
+  
+<img class="active4" src="images/catpre.gif">
+
+
+<img onclick="location.href='pac/index.html';" class="static5" src="images/pacpre.png">
+  
+<img class="active5" src="images/pacpre.gif">
+
+
+<img onclick="location.href='https://checky-six.vercel.app/';" class="static6" src="images/check.png">
+  
+<img class="active6" src="images/check.gif">  
+<script>
+
+function genQuote() {
+  var randNum = Math.floor(Math.random() * 4) + 1;
+  document.getElementById('text').innerHTML = quotes[randNum];
+
+}
+
+//quote array
+var quotes = ["blank","i love you","hello cutie","Game time","You're adorble"];
+
+
+</script>  
+</body>
+</html>

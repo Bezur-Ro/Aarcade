@@ -1,0 +1,45 @@
+canvas {
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+    background-image: url("images/grid.jpg");
+    width: 300px;
+    hight: 600px;
+}
+
+
+@font-face { 
+	font-family: "8bit"; 
+	src: url('PressStart2P-Regular.ttf'); 
+}
+
+#playbutton {
+  position:relative ;
+    width: 100px;
+    height: 50px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    font-family: '8bit', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    
+    cursor: pointer;
+}
+
+.pbutton {
+  position:relative ;
+    width: 125px;
+    height: 50px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    font-family: '8bit', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    
+    cursor: pointer;
+}
+
