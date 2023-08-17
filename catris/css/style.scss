@@ -1,0 +1,310 @@
+$header-color: #bebcde;
+$text-color: #fef1f6;
+$box-color: #181347;
+$box-size: 40px;
+
+html {
+  background-image: url('../images/cat-background.png');
+  /* background-image: url('../images/cat-bg-2.png'); */
+  background-size: 33.3%;
+  animation: blinkingBackground 20s infinite;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
+  color: $text-color;
+}
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  font-weight: 800;
+  color: $header-color;
+}
+
+.score > h1,
+.controls > h1 {
+  font-size: 1.5em;
+}
+
+span,
+.controls>ul {
+  color: $text-color;
+}
+
+#game-canvas {
+  background-image: url('../images/game-background.png');
+  background-size: cover;
+}
+
+#hold-canvas, #next-canvas, .score, .controls,
+.hold > h1, .right-sidebar > h1 {
+  background-color: $box-color;
+}
+
+.tetris-title {
+  background: url('../images/logo.png');
+  width: 250px;
+  height: 10%;
+  margin: 0 auto;
+  background-size: 250px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.canvases {
+  display: flex;
+  justify-content: space-around;
+  height: 90%;
+}
+
+.hold, .game-canvas-container, .right-sidebar, .score, .controls {
+  border-width: 7px;
+  border-style: solid;
+}
+
+.hold-canvas-container, .next-canvas-container {
+  padding: $box-size 0px 0px $box-size;
+  background-color: $box-color;
+}
+
+.score, .controls {
+  border-color: #633ecc;
+}
+
+.left-sidebar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15%;
+}
+
+.game-canvas-container {
+  align-self: flex-start;
+}
+
+.right-sidebar {
+  align-self: flex-start;
+}
+
+.score, .controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  padding: 5px;
+  border-radius: 8%;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content,
+.play-holder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: $box-color;
+}
+
+.active {
+  display: block;
+}
+
+.pause {
+  display: none;
+}
+
+.game-over {
+  display: none;
+}
+
+/* Rainbow border-color, color, bg-color */
+@keyframes blinkingBackground {
+  100%, 0% {
+  border-color: rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 0);
+  }
+
+  8% {
+    border-color: rgb(255, 0, 127);
+    color: rgb(255, 0, 127);
+    background-color: rgb(255, 127, 0);
+  }
+
+  16% {
+    border-color: rgb(255, 0, 255);
+    color: rgb(255, 0, 255);
+    background-color: rgb(255, 255, 0);
+  }
+
+  25% {
+    border-color: rgb(127, 0, 255);
+    color: rgb(127, 0, 255);
+    background-color: rgb(127, 255, 0);
+  }
+
+  33% {
+    border-color: rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
+    background-color: rgb(0, 255, 0);
+  }
+
+  41% {
+    border-color: rgb(0, 127, 255);
+    color: rgb(0, 127, 255);
+    background-color: rgb(0, 255, 127);
+  }
+
+  50% {
+    border-color: rgb(0, 127, 255);
+    color: rgb(0, 127, 255);
+    background-color: rgb(0, 255, 255);
+  }
+
+  58% {
+    border-color: rgb(0, 255, 255);
+    color: rgb(0, 255, 255);
+    background-color: rgb(0, 127, 255);
+  }
+
+  66% {
+    border-color: rgb(127, 0, 255);
+    color: rgb(127, 0, 255);
+    background-color: rgb(0, 0, 255);
+  }
+
+  75% {
+    border-color: rgb(255, 0, 255);
+    color: rgb(255, 0, 255);
+    background-color: rgb(127, 0, 255);
+  }
+
+  83% {
+    border-color: rgb(255, 0, 127);
+    color: rgb(255, 0, 127);
+    background-color: rgb(255, 0, 255);
+  }
+
+  91% {
+    border-color: rgb(255, 127, 0);
+    color: rgb(255, 127, 0);
+    background-color: rgb(255, 0, 127);
+  }
+}
+
+/* Thanks to Kocsten for Hover Glow Effect */
+.glow-on-hover {
+  width: 500px;
+  height: 500px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  font-size: 4em;
+  text-align: center;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* MacOS Big Sur Button CSS */
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  color: #fff;
+  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+  background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+/* Media Queries */ 
+@media only screen and (max-width: 1000px) {
+  html {
+    background-size: 66.6%;
+  }
+}
