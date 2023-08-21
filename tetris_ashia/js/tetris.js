@@ -57,7 +57,7 @@ function getCookie(cname) {
 
 
 var hiscore = getCookie("username");
-    document.getElementById("highscore").style.color = '#00FFFF'
+    document.getElementById("highscore").style.color = '#000080'
     document.getElementById("highscore").innerHTML = 'HighScore: '+ hiscore ;
 // creates a new 4x4 shape in global variable 'current'
 // 4x4 so as to cover the size when the shape is rotated
