@@ -223,3 +223,30 @@ position:absolute;
   top: 65%;
   left: 30%;
 }
+
+
+.static7 {
+  
+  z-index: 1;
+  top: 65%;
+   left: 45%;
+  position:absolute;
+  background: white;
+  border-style: solid;
+  border-color: #ffffff;
+  border-width: 5px;
+}
+
+.static7:hover {
+
+  opacity:0;
+}
+
+.active7{
+  border-style: solid;
+ border-color: #ffffff;
+  border-width: 5px;
+position:absolute;
+  top: 65%;
+  left: 45%;
+}
