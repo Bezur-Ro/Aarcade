@@ -47,11 +47,6 @@ var shapes = {
 
 var imgCache = {};
 
-
-var hiscore = getCookie("username");
-
-
-
 current = {
     shape: null,
     x: 4,
@@ -60,6 +55,9 @@ current = {
     countdown: 2,
     next: null
 };
+
+
+
 
 var tetris = {
     unpressed: true,
@@ -73,6 +71,8 @@ var tetris = {
     init: function () {
         tetris.state = gameStates.OFF,
         tetris.score = 0;
+				
+				
         tetris.lines = 0;
         tetris.level = 1;
         tetris.tetris = 800;
@@ -366,21 +366,28 @@ var tetris = {
             }
 
             tetris.score = tetris.score + tetris.level * multiplier * numCleared;
-					if (tetris.score >= tetris.hiscore){
-                          tetris.hiscore = tetris.score;
-                        setCookie("username", tetris.hiscore, 360);
-    
-                      }
+
+					
+					tetris.hiscore = tetris.score;
+
+					
+					tetris.saveScore("username", tetris.hiscore, 360);
+
+					
             window.clearInterval(ticker);
             ticker = window.setInterval(tetris.tick, tetris.speed);
-					
         }
 
     },
     updateGame: function () {
         $('#numLevel').html(tetris.level);
         $('#numScore').html(tetris.score);
-				$('#numhiScore').html(tetris.hiscore);
+			if (tetris.score >= tetris.hiscore){
+                          tetris.hiscore = tetris.score;
+                        tetris.saveScore("username", tetris.hiscore, 360);
+		$('#numhiScore').html(tetris.hiscore);	}
+				
+			
     },
     nextShape: function () {
         if (!current.shape || tetris.canMove(0, 4, 0)) {
@@ -453,6 +460,7 @@ var tetris = {
     },
     start: function () {
         tetris.state = gameStates.ON;
+				tetris.loadScore()
         $("#start").hide();
         $("#pause").show();
         $('#blocker')[0].style.display = 'none';
@@ -474,7 +482,30 @@ var tetris = {
         tetris.start();
         
     },
+		saveScore: function (cname,cvalue,exdays) {
+const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		},
+		loadScore: function (cname) {
+let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+},
 }
+
+
 $(document).ready(function(){
     tetris.cacheMeUp();
 
@@ -492,6 +523,7 @@ $(document).ready(function(){
     nextCanvas.width = nextCanvas.height = 4*size;
     nextContext = nextCanvas.getContext('2d');
 
+		$('#numhiScore').html(tetris.loadScore("username"));
     tetris.init();
     tetris.bindHandlers();
     $('#start').click(tetris.start);
@@ -500,30 +532,3 @@ $(document).ready(function(){
 
 });
 
-function setCookie(cname,cvalue,exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-
-var hiscore = getCookie("username");
-    document.getElementById("highscore").style.color = '#000080'
-    document.getElementById("highscore").innerHTML = 'HighScore: '+ hiscore ;
